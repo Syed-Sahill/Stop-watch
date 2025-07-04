@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>StopWatch with Timer</title>
+        <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #2c2e45;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        section {
+            background: #1f1f2e;
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width:250px;
+            height:400px;
+        }
+
+        #countDown {
+            font-size: 60px;
+            color: #ff5da2;
+            margin-bottom: 30px;
+            /* font-weight: bold; */
+            margin-top:30px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            /* margin-left:25px; */
+            /* justify-content: center; */
+        }
+
+        button {
+            background: #fff;
+            color: #333;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 500;
+            /* margin-left:px; */
+            margin-top: -5px;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            width:120px;
+        }
+
+        button:hover {
+            background: #ff5da2;
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        .resetValue {
+            margin-top: 20px;
+            color: #ff5da2;
+            font-size: 18px;
+        }
+        </style>
+    </head>
+    <body>
+        <section>
+            <p id="countDown">0</p>
+            <div class="buttons">
+                <button class="start_btn">Start</button>
+                <button class="reset_btn">Reset</button>
+                <button class="stop_btn">Stop</button>
+                <button class="time_btn">GetTime</button>
+                <button class="clear_btn">ClearTime</button>
+            </div>
+            <div class="resetValue"></div>
+        </section>
+
+
+        <script>
+            const countDownElem = document.querySelector("#countDown");
+            const reseValueElem = document.querySelector(".resetValue");
+
+            let startCount = 0;
+            let validId;
+
+            const startTimer = () =>{
+                validdId = setInterval(() => {
+                     countDownElem.innerText = startCount++;
+                } , 1000);
+            }
+
+            const resetTimer = () =>{
+                startCount = 0;
+                countDownElem.innerText = startCount;
+                clearInterval((validId));
+            }
+
+            const stopTimer = () => {
+                clearInterval(validdId);
+            }
+
+            const showTimer = () =>{
+                let newPara = document.createElement("p");
+                newPara.innerText = `The stop time is ${startCount - 1 }`;
+                reseValueElem.append(newPara);
+            }
+
+            const clearTimer = () =>{
+                reseValueElem.innerText = "";
+            }
+
+            document.querySelector(".start_btn").addEventListener("click" , startTimer);
+
+            document.querySelector(".reset_btn").addEventListener("click" , resetTimer);
+
+            document.querySelector(".stop_btn").addEventListener("click" , stopTimer);
+            
+            document.querySelector(".time_btn").addEventListener("click" , showTimer);
+            
+            document.querySelector(".clear_btn").addEventListener("click" , clearTimer);
+
+
+        </script>
+    </body>
+</html>
